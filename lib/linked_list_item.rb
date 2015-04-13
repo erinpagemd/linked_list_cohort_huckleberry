@@ -14,4 +14,13 @@ class LinkedListItem
       @next_item = value
     end
   end
+
+  def last?
+    if @next_item != nil
+      false
+    else
+      true
+    end
+  end
+
 end
