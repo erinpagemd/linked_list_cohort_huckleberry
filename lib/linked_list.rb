@@ -1,3 +1,73 @@
 class LinkedList
+  attr_accessor :first_item
+  attr_accessor :size
+  attr_accessor :last_item
+
+  def initialize
+    # what is the initial state of the LinkedList?
+    @size = 0
+    @first_item = nil
+    @last_item = nil
+  end
+
+  def push(payload)
+    if @first_item.nil?
+      lli = LinkedListItem.new(payload)
+      # make the LinkedListItem the first_item in the LinkedList
+      @first_item = lli
+      @last_item = lli
+    else
+      lli = LinkedListItem.new(payload)
+      # make the last_item have a next_item of lli
+      @last_item.next_item = lli
+      # last item is the lli with a next_item of nil
+      @last_item = lli
+
+    end
+    # increase the size of the LinkedList
+    @size += 1
+  end
+
+  def get(num)
+    if num < 0
+      raise IndexError, "Index cannot be less than zero"
+    elsif num === 0
+      @first_item.payload
+    elsif !(1..@size).cover?(num)
+      raise IndexError, "no such item"
+    else #num number of times get the next_item
+      my_item = @first_item
+      num.times do
+        my_item = my_item.next_item
+      end
+      my_item.payload
+    end
+  end
+
+  def last
+    if @last_item.nil?
+      @last_item
+    else
+      @last_item.payload
+    end
+  end
+
+  def to_s
+    if @size === 0
+      "| |"
+    elsif @size === 1
+      "| #{@last_item.payload} |"
+    else
+      # @size number of times, shovel in each payload
+      my_item = @first_item
+      string = my_item.payload
+      my_num = @size - 1
+      my_num.times do
+        my_item = my_item.next_item
+        string << ", #{my_item.payload}"
+      end
+      "| #{string} |"
+    end
+  end
 
 end
