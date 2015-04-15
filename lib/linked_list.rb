@@ -1,13 +1,19 @@
+require_relative 'linked_list_item'
+
 class LinkedList
   attr_accessor :first_item
   attr_accessor :size
   attr_accessor :last_item
 
-  def initialize
-    # what is the initial state of the LinkedList?
-    @size = 0
-    @first_item = nil
-    @last_item = nil
+  def initialize(*args)
+    if args.empty?
+      @first_item = nil
+      @size = 0
+      @last_item = nil
+    else
+      @size = 0
+      args.each{|arg| push(arg)}
+    end
   end
 
   def push(payload)
@@ -22,7 +28,6 @@ class LinkedList
       @last_item.next_item = lli
       # last item is the lli with a next_item of nil
       @last_item = lli
-
     end
     # increase the size of the LinkedList
     @size += 1
@@ -44,6 +49,15 @@ class LinkedList
     end
   end
 
+  def [](num)
+    get(num)
+  end
+
+  def []=(num, payload)
+    #make a new lli with payload
+    #replace lli at node num with the new lli
+  end
+
   def last
     if @last_item.nil?
       @last_item
@@ -55,8 +69,6 @@ class LinkedList
   def to_s
     if @size === 0
       "| |"
-    elsif @size === 1
-      "| #{@last_item.payload} |"
     else
       # @size number of times, shovel in each payload
       my_item = @first_item
