@@ -55,7 +55,22 @@ class LinkedList
 
   def []=(num, payload)
     #make a new lli with payload
-    #replace lli at node num with the new lli
+    lli = LinkedListItem.new(payload)
+    #make the new lli.next_item at node+1
+    after_item = @first_item
+    after_count = num + 1
+    after_count.times do
+      after_item =after_item.next_item
+    end
+    lli.next_item = after_item
+    #replace next_item at node num-1 with the new lli
+    before_item = @first_item
+    before_count = num - 1
+    before_count.times do
+      before_item = before_item.next_item
+    end
+    before_item.next_item = lli
+
   end
 
   def last
