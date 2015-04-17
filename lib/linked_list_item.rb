@@ -8,7 +8,7 @@ class LinkedListItem
 
   attr_reader :next_item
   def next_item=(value)
-    if value == self
+    if value === self
       raise ArgumentError
     else
       @next_item = value
