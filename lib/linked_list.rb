@@ -97,4 +97,25 @@ class LinkedList
     end
   end
 
+  def delete(index)
+    raise IndexError if !(0..@size).include?(index)
+    puts "two"
+    @size -= 1
+    if index === 0
+      @first_item = @first_item.next_item
+    else
+      after_count = index + 1
+      after_item = @first_item
+      after_count.times do
+        after_item = after_item.next_item
+      end
+      before_count = index - 1
+      before_item = @first_item
+      before_count.times do
+        before_item = before_item.next_item
+      end
+      before_item.next_item = after_item
+    end
+  end
+
 end
