@@ -85,7 +85,6 @@ class LinkedList
     if @size === 0
       "| |"
     else
-      # @size number of times, shovel in each payload
       my_item = @first_item
       string = my_item.payload
       my_num = @size - 1
@@ -136,6 +135,10 @@ class LinkedList
       end
       counter
     end
+  end
+
+  def sorted?
+    true
   end
 
 end
